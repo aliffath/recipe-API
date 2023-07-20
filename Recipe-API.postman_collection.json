@@ -1,0 +1,474 @@
+{
+	"info": {
+		"_postman_id": "9b780450-e772-400d-94a5-dc5409989bc6",
+		"name": "Recipe-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25940715"
+	},
+	"item": [
+		{
+			"name": "GET ALL USERS",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"fatah\",\r\n    \"email\" : \"fatah@mail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/allData",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"allData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ALL RECIPES PAGINATION",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"fatah\",\r\n    \"email\" : \"fatah@mail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/recipes",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"recipes"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "3",
+							"disabled": true
+						},
+						{
+							"key": "limit",
+							"value": "3",
+							"disabled": true
+						},
+						{
+							"key": "sort",
+							"value": "desc",
+							"disabled": true
+						},
+						{
+							"key": "search",
+							"value": "nasi",
+							"disabled": true
+						},
+						{
+							"key": "sortBY",
+							"value": "title",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ALL RECIPES",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"fatah\",\r\n    \"email\" : \"fatah@mail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/allRecipe",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"allRecipe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET CATEGORY",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"fatah\",\r\n    \"email\" : \"fatah@mail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/category",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"category"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET USER DETAIL",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"fatah\",\r\n    \"email\" : \"fatah@mail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/detail/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"detail",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET RECIPE DETAIL",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"fatah\",\r\n    \"email\" : \"fatah@mail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/recipe/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"recipe",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST USERS",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "user7",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "user7@mail.com",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "1234",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password7",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/postUsers",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"postUsers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST RECIPE",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "seblak",
+							"type": "text"
+						},
+						{
+							"key": "ingredients",
+							"value": "mie,rempah-rempah,telur,kerupuk",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"value": "seblak.png",
+							"type": "text"
+						},
+						{
+							"key": "category_id",
+							"value": "1",
+							"description": "1 = main cours, 2 = desert, 3 = appetizer",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/postRecipe",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"postRecipe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE USERS",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "update2",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "update2@mail.com",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "12345678",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password4",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/update/2",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"update",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE RECIPE",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "sate kambing",
+							"type": "text"
+						},
+						{
+							"key": "ingredients",
+							"value": "daging kambing,kecap,rempah",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"value": "sate.png",
+							"type": "text"
+						},
+						{
+							"key": "category_id",
+							"value": "1",
+							"description": "1 = main course,2= desert,3 = appetizer",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/updateRecipe/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"updateRecipe",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE USERS",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "update2",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "update2@mail.com",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "12345678",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password4",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/delete/4",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"delete",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE RECIPE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "update2",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "update2@mail.com",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "12345678",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password4",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/deleteRecipe/8",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"deleteRecipe",
+						"8"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
