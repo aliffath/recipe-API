@@ -50,13 +50,17 @@ const recipeModel = {
 
   findById: (id) => {
     return new Promise((resolve, reject) => {
-      Pool.query(`SELECT * FROM recipe WHERE id = ${id}`, (err, result) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(result);
+      Pool.query(
+        `SELECT recipe.id, recipe.title, recipe.ingredients, recipe.image, category.name AS category FROM recipe JOIN category ON recipe.category_id = category.id WHERE recipe.id = ${id}`,
+
+        (err, result) => {
+          if (!err) {
+            resolve(result);
+          } else {
+            reject(err);
+          }
         }
-      });
+      );
     });
   },
 
