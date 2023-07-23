@@ -25,10 +25,10 @@ const usersModel = {
     });
   },
 
-  create: ({ name, email, phone, password }) => {
+  findByEmail: (email) => {
     return new Promise((resolve, reject) => {
       Pool.query(
-        `INSERT INTO users (name,email,phone,password) VALUES ('${name}','${email}','${phone}','${password}')`,
+        `SELECT * FROM users WHERE email = '${email}'`,
         (err, result) => {
           if (err) {
             reject(err);
@@ -40,10 +40,25 @@ const usersModel = {
     });
   },
 
-  updateUsers: ({ id, name, email, phone }) => {
+  create: ({ name, email, password }) => {
     return new Promise((resolve, reject) => {
       Pool.query(
-        `UPDATE users SET name = '${name}', email = '${email}', phone = '${phone}' WHERE id = ${id} `,
+        `INSERT INTO users (name,email,password) VALUES ('${name}','${email}','${password}')`,
+        (err, result) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(result);
+          }
+        }
+      );
+    });
+  },
+
+  updateUsers: ({ id, name, email }) => {
+    return new Promise((resolve, reject) => {
+      Pool.query(
+        `UPDATE users SET name = '${name}', email = '${email}' WHERE id = ${id} `,
         (err, result) => {
           if (err) {
             reject(err);

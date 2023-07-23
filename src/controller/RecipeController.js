@@ -56,13 +56,13 @@ const recipeController = {
     const id = req.params.id;
     try {
       const detail = await recipeModel.findById(id);
-      if (detail) {
+      if (detail && detail.rows.length > 0) {
         res.status(200).json({
           message: "Berhasil mendapatkan detail resep",
           data: detail.rows,
         });
       } else {
-        res.status(404).json({ error: "Resep tidak ditemukan" });
+        res.status(404).json({ error: "Data not found" });
       }
     } catch (error) {
       res.status(500).json({ error: "Get recipes failed" });

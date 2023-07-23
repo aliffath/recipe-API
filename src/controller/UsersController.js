@@ -25,18 +25,17 @@ const usersController = {
   },
 
   postUser: async (req, res) => {
-    const { name, email, phone, password } = req.body;
+    const { name, email, password } = req.body;
     try {
       const hash = await argon2.hash("password");
       await usersModel.create({
         name,
-        phone,
         email,
         password: hash,
       });
       res.status(201).json({
         message: "User Create Successfully",
-        data: { name, email, phone, password: hash },
+        data: { name, email, password: hash },
       });
     } catch (error) {
       res.status(500).json({ error: "Failed to create user" });
@@ -44,14 +43,14 @@ const usersController = {
   },
 
   updateUser: async (req, res) => {
-    const { name, email, phone } = req.body;
+    const { name, email } = req.body;
     const id = req.params.id;
 
     try {
-      await usersModel.updateUsers({ id, name, email, phone });
+      await usersModel.updateUsers({ id, name, email });
       res.status(200).json({
         message: "Update data Successfully",
-        data: { name, email, phone },
+        data: { name, email },
       });
     } catch (error) {
       res.status(500).json({ error: "Failed to update user" });

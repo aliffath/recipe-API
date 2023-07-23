@@ -1,4 +1,4 @@
--- Active: 1688122491292@@127.0.0.1@5432@recipes@public
+-- Active: 1689921752306@@127.0.0.1@5432@recipes@public
 CREATE DATABASE Recipes;
 
 CREATE TABLE users (
@@ -8,6 +8,8 @@ CREATE TABLE users (
     phone VARCHAR,
     password VARCHAR NOT NULL
 );
+
+ALTER TABLE users DROP COLUMN phone;
 
 CREATE TABLE recipe (
     id SERIAL PRIMARY KEY,
