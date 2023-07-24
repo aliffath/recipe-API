@@ -21,15 +21,15 @@ const authController = {
       }
 
       const hashPassword = await argon2.hash(password);
-      const dataUser = {
+
+      await userModel.create({
         email,
         password: hashPassword,
         name,
-      };
-      const newUser = await userModel.create(dataUser);
+      });
       res.status(201).json({
         message: "Register Successfully",
-        newUser,
+        data: { name, email },
       });
     } catch (error) {
       console.log(error);

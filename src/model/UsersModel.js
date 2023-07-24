@@ -40,19 +40,16 @@ const usersModel = {
     });
   },
 
-  create: ({ name, email, password }) => {
-    return new Promise((resolve, reject) => {
-      Pool.query(
-        `INSERT INTO users (name,email,password) VALUES ('${name}','${email}','${password}')`,
-        (err, result) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(result);
-          }
-        }
-      );
-    });
+  create: async ({ name, email, password }) => {
+    const query = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3)`;
+    const queryParams = [name, email, password];
+
+    try {
+      const result = await Pool.query(query, queryParams);
+      return result;
+    } catch (err) {
+      throw err;
+    }
   },
 
   updateUsers: ({ id, name, email }) => {
