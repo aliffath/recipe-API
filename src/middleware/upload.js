@@ -43,6 +43,7 @@ const uploadMiddleware = (field) => {
   return (req, res, next) => {
     uploadField(req, res, (err) => {
       if (err) {
+        console.log(err);
         if (err.message === "fileformat_error") {
           return res.status(400).json({
             success: false,
@@ -52,7 +53,7 @@ const uploadMiddleware = (field) => {
         }
         return res.status(500).json({
           success: false,
-          message: "Terjadi Kesalahan Server",
+          message: "File size to large",
         });
       }
       return next();

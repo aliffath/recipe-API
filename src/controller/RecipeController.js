@@ -158,8 +158,8 @@ const recipeController = {
   },
 
   updateRecipe: async (req, res) => {
-    const image = req.file.path;
     const { title, ingredients, category_id } = req.body;
+    const image = req.file.path;
     const { id } = req.params;
 
     try {
@@ -172,7 +172,13 @@ const recipeController = {
         return res.status(404).json({ message: "recipe bukan milik anda" });
       }
 
-      await recipeModel.update({ id, title, ingredients, image, category_id });
+      await recipeModel.update({
+        id,
+        title,
+        ingredients,
+        image,
+        category_id,
+      });
       res.status(200).json({
         message: "Update recipe Successfully",
         data: { title, ingredients, image, category_id },

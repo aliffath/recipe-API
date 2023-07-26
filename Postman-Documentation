@@ -19,17 +19,17 @@
 							"urlencoded": [
 								{
 									"key": "name",
-									"value": "user2",
+									"value": "user3",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "user2@mail.com",
+									"value": "user3@mail.com",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "password2",
+									"value": "password3",
 									"type": "text"
 								},
 								{
@@ -62,12 +62,12 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "user2@mail.com",
+									"value": "user3@mail.com",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "password2",
+									"value": "password3",
 									"type": "text"
 								},
 								{
@@ -253,34 +253,34 @@
 							"formdata": [
 								{
 									"key": "title",
-									"value": "ice cream vanilla",
+									"value": "sate",
 									"type": "text"
 								},
 								{
 									"key": "ingredients",
-									"value": "ice,vanilla,topping",
+									"value": "daging ayam",
 									"type": "text"
 								},
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/C:/Users/Alif Miftakhul Fatah/Downloads/ice cream.jpg"
+									"src": "/C:/Users/Alif Miftakhul Fatah/Downloads/sate.jpg"
 								},
 								{
 									"key": "category_id",
-									"value": "2",
+									"value": "1",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{base_url}}/updateRecipe/13",
+							"raw": "{{base_url}}/updateRecipe/18",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"updateRecipe",
-								"13"
+								"18"
 							]
 						}
 					},
@@ -328,13 +328,13 @@
 							]
 						},
 						"url": {
-							"raw": "{{base_url}}/deleteRecipe/13",
+							"raw": "{{base_url}}/deleteRecipe/19",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"deleteRecipe",
-								"13"
+								"19"
 							]
 						}
 					},
@@ -456,7 +456,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ1c2VyMkBtYWlsLmNvbSIsIm5hbWUiOiJ1c2VyMiIsImlhdCI6MTY5MDIxOTczMiwiZXhwIjoxNzIxNzU1NzMyfQ.-PMbqbnQip8p7B5Y0VQHKbForuwgA5z33f8vNmtplic",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -468,22 +468,23 @@
 							"formdata": [
 								{
 									"key": "title",
-									"value": "ice cream",
+									"value": "salad buah",
 									"type": "text"
 								},
 								{
 									"key": "ingredients",
-									"value": "ice,vanilla",
+									"value": "buah buahan",
 									"type": "text"
 								},
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/C:/Users/Alif Miftakhul Fatah/Downloads/ice cream.jpg"
+									"src": "/C:/Users/Alif Miftakhul Fatah/Downloads/salad.jpg"
 								},
 								{
 									"key": "category_id",
-									"value": "2",
+									"value": "3",
+									"description": "1=main course,2 = desert,3 = appetizer",
 									"type": "text"
 								}
 							]
