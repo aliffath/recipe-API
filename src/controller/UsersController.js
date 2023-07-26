@@ -43,14 +43,14 @@ const usersController = {
   },
 
   updateUser: async (req, res) => {
-    const { name, email } = req.body;
+    const { name, email, photo } = req.body;
     const id = req.params.id;
 
     try {
-      await usersModel.updateUsers({ id, name, email });
+      await usersModel.updateUsers({ id, name, email, photo });
       res.status(200).json({
         message: "Update data Successfully",
-        data: { name, email },
+        data: { name, email, photo },
       });
     } catch (error) {
       res.status(500).json({ error: "Failed to update user" });

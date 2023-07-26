@@ -52,10 +52,10 @@ const usersModel = {
     }
   },
 
-  updateUsers: ({ id, name, email }) => {
+  updateUsers: ({ id, name, email, photo }) => {
     return new Promise((resolve, reject) => {
       Pool.query(
-        `UPDATE users SET name = '${name}', email = '${email}' WHERE id = ${id} `,
+        `UPDATE users SET name = '${name}', email = '${email}',photo = '${photo}' WHERE id = ${id} `,
         (err, result) => {
           if (err) {
             reject(err);

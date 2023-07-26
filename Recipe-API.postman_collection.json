@@ -7,6 +7,502 @@
 	},
 	"item": [
 		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "REGISTER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "user2",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "user2@mail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password2",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGIN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "user2@mail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password2",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "GET ALL RECIPES PAGINATION",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{base_url}}/recipes",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recipes"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "ASC",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "daging sapi",
+									"disabled": true
+								},
+								{
+									"key": "sortBY",
+									"value": "id",
+									"disabled": true
+								},
+								{
+									"key": "searchBY",
+									"value": "ingredients",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET MY RECIPE",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"fatah\",\r\n    \"email\" : \"fatah@mail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/myRecipe",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"myRecipe"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "4",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "desc",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "daging",
+									"disabled": true
+								},
+								{
+									"key": "searchBy",
+									"value": "ingredients",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE RECIPE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "ice cream vanilla",
+									"type": "text"
+								},
+								{
+									"key": "ingredients",
+									"value": "ice,vanilla,topping",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Alif Miftakhul Fatah/Downloads/ice cream.jpg"
+								},
+								{
+									"key": "category_id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/updateRecipe/13",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"updateRecipe",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE RECIPE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "update2",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "update2@mail.com",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password4",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/deleteRecipe/13",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"deleteRecipe",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL RECIPES",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"fatah\",\r\n    \"email\" : \"fatah@mail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/allRecipe",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"allRecipe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET RECIPE DETAIL",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ1c2VyMkBtYWlsLmNvbSIsIm5hbWUiOiJ1c2VyMiIsImlhdCI6MTY5MDI4MTA5MCwiZXhwIjoxNzIxODE3MDkwfQ.WzVrSGppO5AlXzzzvJqs_TM7QwVw12BN4CbMB5ErieA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"fatah\",\r\n    \"email\" : \"fatah@mail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/recipe/12",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"recipe",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET CATEGORY",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"fatah\",\r\n    \"email\" : \"fatah@mail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/category",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST RECIPE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ1c2VyMkBtYWlsLmNvbSIsIm5hbWUiOiJ1c2VyMiIsImlhdCI6MTY5MDIxOTczMiwiZXhwIjoxNzIxNzU1NzMyfQ.-PMbqbnQip8p7B5Y0VQHKbForuwgA5z33f8vNmtplic",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "ice cream",
+									"type": "text"
+								},
+								{
+									"key": "ingredients",
+									"value": "ice,vanilla",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Alif Miftakhul Fatah/Downloads/ice cream.jpg"
+								},
+								{
+									"key": "category_id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/postRecipe",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"postRecipe"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "GET ALL USERS",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -30,120 +526,6 @@
 					],
 					"path": [
 						"allData"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET ALL RECIPES PAGINATION",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\" : \"fatah\",\r\n    \"email\" : \"fatah@mail.com\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/recipes",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"recipes"
-					],
-					"query": [
-						{
-							"key": "page",
-							"value": "3",
-							"disabled": true
-						},
-						{
-							"key": "limit",
-							"value": "3",
-							"disabled": true
-						},
-						{
-							"key": "sort",
-							"value": "desc",
-							"disabled": true
-						},
-						{
-							"key": "search",
-							"value": "nasi",
-							"disabled": true
-						},
-						{
-							"key": "sortBY",
-							"value": "title",
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET ALL RECIPES",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\" : \"fatah\",\r\n    \"email\" : \"fatah@mail.com\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/allRecipe",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"allRecipe"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET CATEGORY",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\" : \"fatah\",\r\n    \"email\" : \"fatah@mail.com\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/category",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"category"
 					]
 				}
 			},
@@ -180,36 +562,6 @@
 			"response": []
 		},
 		{
-			"name": "GET RECIPE DETAIL",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\" : \"fatah\",\r\n    \"email\" : \"fatah@mail.com\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/recipe/1",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"recipe",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "POST USERS",
 			"request": {
 				"method": "POST",
@@ -219,12 +571,12 @@
 					"urlencoded": [
 						{
 							"key": "name",
-							"value": "user7",
+							"value": "user8",
 							"type": "text"
 						},
 						{
 							"key": "email",
-							"value": "user7@mail.com",
+							"value": "user8@mail.com",
 							"type": "text"
 						},
 						{
@@ -234,7 +586,7 @@
 						},
 						{
 							"key": "password",
-							"value": "password7",
+							"value": "password8",
 							"type": "text"
 						}
 					]
@@ -252,49 +604,6 @@
 			"response": []
 		},
 		{
-			"name": "POST RECIPE",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "title",
-							"value": "seblak",
-							"type": "text"
-						},
-						{
-							"key": "ingredients",
-							"value": "mie,rempah-rempah,telur,kerupuk",
-							"type": "text"
-						},
-						{
-							"key": "image",
-							"value": "seblak.png",
-							"type": "text"
-						},
-						{
-							"key": "category_id",
-							"value": "1",
-							"description": "1 = main cours, 2 = desert, 3 = appetizer",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "{{base_url}}/postRecipe",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"postRecipe"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "UPDATE USERS",
 			"request": {
 				"method": "PUT",
@@ -304,12 +613,12 @@
 					"urlencoded": [
 						{
 							"key": "name",
-							"value": "update2",
+							"value": "update3",
 							"type": "text"
 						},
 						{
 							"key": "email",
-							"value": "update2@mail.com",
+							"value": "update3@mail.com",
 							"type": "text"
 						},
 						{
@@ -333,50 +642,6 @@
 					"path": [
 						"update",
 						"2"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "UPDATE RECIPE",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "title",
-							"value": "sate kambing",
-							"type": "text"
-						},
-						{
-							"key": "ingredients",
-							"value": "daging kambing,kecap,rempah",
-							"type": "text"
-						},
-						{
-							"key": "image",
-							"value": "sate.png",
-							"type": "text"
-						},
-						{
-							"key": "category_id",
-							"value": "1",
-							"description": "1 = main course,2= desert,3 = appetizer",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "{{base_url}}/updateRecipe/1",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"updateRecipe",
-						"1"
 					]
 				}
 			},
@@ -414,56 +679,12 @@
 					]
 				},
 				"url": {
-					"raw": "{{base_url}}/delete/4",
+					"raw": "{{base_url}}/delete/8",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"delete",
-						"4"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "DELETE RECIPE",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "name",
-							"value": "update2",
-							"type": "text"
-						},
-						{
-							"key": "email",
-							"value": "update2@mail.com",
-							"type": "text"
-						},
-						{
-							"key": "phone",
-							"value": "12345678",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "password4",
-							"type": "text",
-							"disabled": true
-						}
-					]
-				},
-				"url": {
-					"raw": "{{base_url}}/deleteRecipe/8",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"deleteRecipe",
 						"8"
 					]
 				}

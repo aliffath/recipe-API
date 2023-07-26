@@ -70,7 +70,7 @@ const authController = {
           name: user.rows[0].name,
         },
         secretKey,
-        { expiresIn: "1d" }
+        { expiresIn: "365d" }
       );
       return res
         .status(200)

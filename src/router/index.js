@@ -4,8 +4,8 @@ const usersController = require("../controller/UsersController");
 const categoryController = require("../controller/CategoryController");
 const recipeController = require("../controller/RecipeController");
 const authController = require("../controller/AuthController");
-const { verifyToken } = require("../middleware/verifytoken");
-
+const { verifyToken } = require("../middleware/verifyToken");
+const uploadMiddleware = require("../middleware/upload");
 const { getAll, postUser, updateUser, deleteUser, getDetail } = usersController;
 const { getData } = categoryController;
 const {
@@ -15,6 +15,7 @@ const {
   getById,
   deleteRecipe,
   updateRecipe,
+  getMyRecipe,
 } = recipeController;
 
 const { login, register } = authController;
@@ -40,11 +41,17 @@ router.get("/category", getData);
 
 //CRUD RECIPES
 
-router.get("/recipes", getRecipes);
-router.get("/allRecipe", selectRecipes);
+router.get("/recipes", verifyToken, getRecipes);
+router.get("/allRecipe", verifyToken, selectRecipes);
 router.get("/recipe/:id", verifyToken, getById);
-router.post("/postRecipe", verifyToken, postRecipe);
+router.post("/postRecipe", uploadMiddleware("image"), verifyToken, postRecipe);
 router.delete("/deleteRecipe/:id", verifyToken, deleteRecipe);
-router.put("/updateRecipe/:id", verifyToken, updateRecipe);
+router.put(
+  "/updateRecipe/:id",
+  uploadMiddleware("image"),
+  verifyToken,
+  updateRecipe
+);
+router.get("/myRecipe", verifyToken, getMyRecipe);
 
 module.exports = router;
