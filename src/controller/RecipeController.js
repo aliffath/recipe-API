@@ -1,4 +1,11 @@
 const recipeModel = require("../model/RecipeModel");
+const cloudinary = require("cloudinary").v2;
+const fileRemove = require("../helper/fileRemove");
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 const recipeController = {
   getRecipes: async (req, res) => {
@@ -115,20 +122,29 @@ const recipeController = {
   },
 
   postRecipe: async (req, res) => {
-    const image = req.file.path;
     const { title, ingredients, category_id } = req.body;
-    let users_id = req.payload.id;
+    const users_id = req.payload.id;
+
     try {
+      const imageUrl = req.file ? req.file.path : null;
+
       await recipeModel.createRecipe({
         title,
         ingredients,
-        image,
-        category_id: parseInt(category_id),
+        image: imageUrl,
+        category_id,
         users_id,
       });
-      res.status(200).json({
+
+      return res.status(200).json({
         message: "Create recipe success",
-        data: { title, ingredients, image, category_id, users_id },
+        data: {
+          title,
+          ingredients,
+          image: imageUrl,
+          category_id,
+          users_id,
+        },
       });
     } catch (error) {
       console.log(error);
@@ -137,30 +153,39 @@ const recipeController = {
   },
 
   deleteRecipe: async (req, res) => {
-    const id = req.params.id;
+    const { id } = req.params;
     try {
       const dataRecipe = await recipeModel.findById(id);
+
       if (dataRecipe.rows.length === 0) {
         return res.status(404).json({ message: "ID not found" });
       }
 
       if (req.payload.id != dataRecipe.rows[0].users_id) {
-        return res.status(404).json({ message: "recipe bukan milik anda" });
+        return res.status(403).json({ message: "Recipe is not owned by you" });
+      }
+
+      if (dataRecipe.rows[0].image) {
+        const file = dataRecipe.rows[0].image.slice(62);
+        const deletedFile = file.slice(0, -4);
+        fileRemove(deletedFile);
       }
 
       await recipeModel.destroy(id);
+
       res.status(200).json({
-        message: "Delete recipes sucessfully",
+        message: "Delete recipe successfully",
       });
     } catch (error) {
+      console.log(error);
       res.status(500).json({ error: "Failed to delete Recipe" });
     }
   },
 
   updateRecipe: async (req, res) => {
+    const { id } = req.params;
     const { title, ingredients, category_id } = req.body;
     const image = req.file.path;
-    const { id } = req.params;
 
     try {
       const dataRecipe = await recipeModel.findById(id);
@@ -169,7 +194,13 @@ const recipeController = {
       }
 
       if (req.payload.id != dataRecipe.rows[0].users_id) {
-        return res.status(404).json({ message: "recipe bukan milik anda" });
+        return res.status(403).json({ message: "Recipe is not owned by you" });
+      }
+
+      if (dataRecipe.rows[0].image) {
+        const file = dataRecipe.rows[0].image.slice(62);
+        const deletedFile = file.slice(0, -4);
+        fileRemove(deletedFile);
       }
 
       await recipeModel.update({
@@ -179,9 +210,15 @@ const recipeController = {
         image,
         category_id,
       });
+
       res.status(200).json({
-        message: "Update recipe Successfully",
-        data: { title, ingredients, image, category_id },
+        message: "Update recipe successfully",
+        data: {
+          title,
+          ingredients,
+          image,
+          category_id,
+        },
       });
     } catch (error) {
       console.log(error);

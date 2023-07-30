@@ -67,31 +67,29 @@ const recipeModel = {
     });
   },
 
-  destroy: (id) => {
-    return new Promise((resolve, reject) => {
-      Pool.query(`DELETE FROM recipe WHERE id = ${id}`, (err, result) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(result);
-        }
-      });
-    });
+  destroy: async (id) => {
+    const query = "DELETE FROM recipe WHERE id = $1 RETURNING image";
+    const values = [id];
+
+    try {
+      const result = await Pool.query(query, values);
+      return result.rows[0];
+    } catch (err) {
+      throw err;
+    }
   },
 
-  update: ({ id, title, ingredients, image, category_id }) => {
-    return new Promise((resolve, reject) => {
-      Pool.query(
-        `UPDATE recipe SET title = '${title}', ingredients = '${ingredients}', image = '${image}', category_id = ${category_id} WHERE id = ${id}`,
-        (err, result) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(result);
-          }
-        }
-      );
-    });
+  update: async ({ id, title, ingredients, image, category_id }) => {
+    const query =
+      "UPDATE recipe SET title = $1, ingredients = $2, image = $3, category_id = $4 WHERE id = $5 RETURNING *";
+    const values = [title, ingredients, image, category_id, id];
+
+    try {
+      const result = await Pool.query(query, values);
+      return result.rows[0];
+    } catch (err) {
+      throw err;
+    }
   },
 
   myRecipeCount: async (data) => {

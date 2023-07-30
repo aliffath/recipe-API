@@ -1,5 +1,11 @@
 const usersModel = require("../model/UsersModel");
 const argon2 = require("argon2");
+const cloudinary = require("cloudinary").v2;
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 const usersController = {
   getAll: async (req, res) => {
@@ -43,7 +49,8 @@ const usersController = {
   },
 
   updateUser: async (req, res) => {
-    const { name, email, photo } = req.body;
+    const { name, email } = req.body;
+    const photo = req.file.path;
     const id = req.params.id;
 
     try {

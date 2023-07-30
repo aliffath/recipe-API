@@ -32,7 +32,7 @@ router.post("/login", login);
 router.get("/allData", getAll);
 router.get("/detail/:id", getDetail);
 router.post("/postUsers", postUser);
-router.put("/update/:id", updateUser);
+router.put("/update/:id", uploadMiddleware("photo"), verifyToken, updateUser);
 router.delete("/delete/:id", deleteUser);
 
 // GET CATEGORY

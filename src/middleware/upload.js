@@ -20,9 +20,9 @@ const storage = new CloudinaryStorage({
   },
 });
 
-// Batasi ukuran file menjadi 2MB
+// Batasi ukuran file menjadi 1MB
 const limits = {
-  fileSize: 2 * 1024 * 1024,
+  fileSize: 1 * 1024 * 1024,
 };
 
 // Filter format file yang diizinkan (hanya "image/jpg", "image/jpeg", dan "image/png" yang diizinkan)
@@ -56,6 +56,7 @@ const uploadMiddleware = (field) => {
           message: "File size to large",
         });
       }
+
       return next();
     });
   };
