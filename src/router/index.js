@@ -29,29 +29,29 @@ router.post("/login", login);
 
 // CRUD USER
 
-router.get("/allData", getAll);
-router.get("/detail/:id", getDetail);
-router.post("/postUsers", postUser);
 router.put("/update/:id", uploadMiddleware("photo"), verifyToken, updateUser);
 router.delete("/delete/:id", deleteUser);
+router.get("/detail/:id", getDetail);
+router.get("/allData", getAll);
+router.post("/postUsers", postUser);
 
 // GET CATEGORY
 
 router.get("/category", getData);
 
 //CRUD RECIPES
-
-router.get("/recipes", verifyToken, getRecipes);
-router.get("/allRecipe", verifyToken, selectRecipes);
-router.get("/recipe/:id", verifyToken, getById);
-router.post("/postRecipe", uploadMiddleware("image"), verifyToken, postRecipe);
-router.delete("/deleteRecipe/:id", verifyToken, deleteRecipe);
 router.put(
   "/updateRecipe/:id",
   uploadMiddleware("image"),
   verifyToken,
   updateRecipe
 );
+router.get("/recipe/:id", verifyToken, getById);
+router.post("/postRecipe", uploadMiddleware("image"), verifyToken, postRecipe);
+router.get("/recipes", verifyToken, getRecipes);
+router.get("/allRecipe", verifyToken, selectRecipes);
+router.delete("/deleteRecipe/:id", verifyToken, deleteRecipe);
+
 router.get("/myRecipe", verifyToken, getMyRecipe);
 
 module.exports = router;

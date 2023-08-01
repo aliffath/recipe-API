@@ -19,17 +19,17 @@
 							"urlencoded": [
 								{
 									"key": "name",
-									"value": "user3",
+									"value": "user2",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "user3@mail.com",
+									"value": "user2@mail.com",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "password3",
+									"value": "password2",
 									"type": "text"
 								},
 								{
@@ -62,12 +62,12 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "user3@mail.com",
+									"value": "user1@mail.com",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "password3",
+									"value": "password1",
 									"type": "text"
 								},
 								{
@@ -149,7 +149,7 @@
 								},
 								{
 									"key": "search",
-									"value": "daging sapi",
+									"value": "ayam",
 									"disabled": true
 								},
 								{
@@ -253,7 +253,7 @@
 							"formdata": [
 								{
 									"key": "title",
-									"value": "sate",
+									"value": "sate ayam spesial",
 									"type": "text"
 								},
 								{
@@ -274,13 +274,19 @@
 							]
 						},
 						"url": {
-							"raw": "{{base_url}}/updateRecipe/18",
+							"raw": "{{base_url}}/updateRecipe/:id",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"updateRecipe",
-								"18"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
+								}
 							]
 						}
 					},
@@ -328,13 +334,13 @@
 							]
 						},
 						"url": {
-							"raw": "{{base_url}}/deleteRecipe/19",
+							"raw": "{{base_url}}/deleteRecipe/1",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"deleteRecipe",
-								"19"
+								"1"
 							]
 						}
 					},
@@ -407,13 +413,19 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/recipe/12",
+							"raw": "{{base_url}}/recipe/:id",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"recipe",
-								"12"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "8"
+								}
 							]
 						}
 					},
@@ -468,22 +480,22 @@
 							"formdata": [
 								{
 									"key": "title",
-									"value": "salad buah",
+									"value": "sate ayam",
 									"type": "text"
 								},
 								{
 									"key": "ingredients",
-									"value": "buah buahan",
+									"value": "daging ayam",
 									"type": "text"
 								},
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/C:/Users/Alif Miftakhul Fatah/Downloads/salad.jpg"
+									"src": "/C:/Users/Alif Miftakhul Fatah/Downloads/sate.jpg"
 								},
 								{
 									"key": "category_id",
-									"value": "3",
+									"value": "1",
 									"description": "1=main course,2 = desert,3 = appetizer",
 									"type": "text"
 								}
@@ -607,31 +619,35 @@
 		{
 			"name": "UPDATE USERS",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [],
 				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
+					"mode": "formdata",
+					"formdata": [
 						{
 							"key": "name",
-							"value": "update3",
+							"value": "Alif",
 							"type": "text"
 						},
 						{
 							"key": "email",
-							"value": "update3@mail.com",
+							"value": "alif@mail.com",
 							"type": "text"
 						},
 						{
-							"key": "phone",
-							"value": "12345678",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "password4",
-							"type": "text",
-							"disabled": true
+							"key": "photo",
+							"type": "file",
+							"src": "/C:/Users/Alif Miftakhul Fatah/Downloads/user.png"
 						}
 					]
 				},

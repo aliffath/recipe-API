@@ -43,7 +43,8 @@ const recipeModel = {
   createRecipe: ({ title, ingredients, image, category_id, users_id }) => {
     return new Promise((resolve, reject) => {
       Pool.query(
-        `INSERT INTO  recipe (title,ingredients,image,category_id,users_id) VALUES ('${title}','${ingredients}', '${image}', ${category_id}, ${users_id})`,
+        `INSERT INTO recipe (title, ingredients, image, category_id, users_id) VALUES ($1, $2, $3, $4, $5)`,
+        [title, ingredients, image, category_id, users_id],
         (err, result) => {
           if (err) {
             reject(err);

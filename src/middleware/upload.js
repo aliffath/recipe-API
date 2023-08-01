@@ -11,21 +11,19 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: "recipe", // Nama folder di mana file akan disimpan di Cloudinary
-    format: async (req, file) => "png", // Format file yang akan disimpan (selalu "png" dalam kasus ini)
+    folder: "recipe",
+    format: async (req, file) => "png",
     public_id: (req, file) => {
-      const filename = new Date().getTime().toString(); // Membuat nama file unik menggunakan timestamp saat ini
+      const filename = new Date().getTime().toString();
       return filename;
     },
   },
 });
 
-// Batasi ukuran file menjadi 1MB
 const limits = {
   fileSize: 1 * 1024 * 1024,
 };
 
-// Filter format file yang diizinkan (hanya "image/jpg", "image/jpeg", dan "image/png" yang diizinkan)
 const fileFilter = (req, file, cb) => {
   const allowedFormats = ["image/jpg", "image/jpeg", "image/png"];
   if (!allowedFormats.includes(file.mimetype)) {
@@ -34,10 +32,8 @@ const fileFilter = (req, file, cb) => {
   cb(null, true);
 };
 
-// Inisialisasi multer dengan penyimpanan dan filter yang telah dikonfigurasi
 const upload = multer({ storage, limits, fileFilter });
 
-// Buat middleware upload untuk field tertentu
 const uploadMiddleware = (field) => {
   const uploadField = upload.single(field);
   return (req, res, next) => {

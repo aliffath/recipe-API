@@ -1,6 +1,7 @@
 const recipeModel = require("../model/RecipeModel");
 const cloudinary = require("cloudinary").v2;
 const fileRemove = require("../helper/fileRemove");
+const path = require("path");
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -186,6 +187,7 @@ const recipeController = {
     const { id } = req.params;
     const { title, ingredients, category_id } = req.body;
     const image = req.file.path;
+    console.log(req.file);
 
     try {
       const dataRecipe = await recipeModel.findById(id);
