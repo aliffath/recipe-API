@@ -12,7 +12,7 @@ const verifyToken = async (req, res, next) => {
         .json({ status: 401, message: "login gagal, server butuh token" });
     }
     let decode = await jwt.verify(token, process.env.JWT_SECRET);
-    // console.log(decode);
+    console.log(decode);
     req.payload = decode;
     next();
   } catch (error) {

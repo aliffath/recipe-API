@@ -16,7 +16,7 @@ const authController = {
       if (user.rows[0]) {
         return res.status(409).json({
           status: 409,
-          message: "Email sudah terdaftar, silahkan login",
+          message: "Email already registered, please login",
         });
       }
 
@@ -50,7 +50,7 @@ const authController = {
       if (!user.rows[0]) {
         return res.status(404).json({
           status: 404,
-          message: "Email tidak terdaftar, silahkan registrasi terlebih dahulu",
+          message: "Email is not registered, please register first",
         });
       }
       const verifyPassword = await argon2.verify(
@@ -58,9 +58,10 @@ const authController = {
         password
       );
       if (!verifyPassword) {
-        return res
-          .status(401)
-          .json({ status: 401, message: "Password yang Anda masukkan salah" });
+        return res.status(401).json({
+          status: 401,
+          message: "The password you entered is incorrect",
+        });
       }
 
       const token = jwt.sign(
@@ -68,6 +69,7 @@ const authController = {
           id: user.rows[0].id,
           email: user.rows[0].email,
           name: user.rows[0].name,
+          photo: user.rows[0].photo,
         },
         secretKey,
         { expiresIn: "365d" }
@@ -79,7 +81,7 @@ const authController = {
       console.log(error);
       return res
         .status(500)
-        .json({ status: 500, message: "Terjadi kesalahan dalam login" });
+        .json({ status: 500, message: "Failed to login user" });
     }
   },
 };

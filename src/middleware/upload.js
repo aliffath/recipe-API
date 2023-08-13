@@ -1,6 +1,7 @@
 const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const path = require("path");
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -21,7 +22,7 @@ const storage = new CloudinaryStorage({
 });
 
 const limits = {
-  fileSize: 1 * 1024 * 1024,
+  fileSize: 2 * 1024 * 1024,
 };
 
 const fileFilter = (req, file, cb) => {
@@ -38,22 +39,20 @@ const uploadMiddleware = (field) => {
   const uploadField = upload.single(field);
   return (req, res, next) => {
     uploadField(req, res, (err) => {
-      if (err) {
-        console.log(err);
-        if (err.message === "fileformat_error") {
-          return res.status(400).json({
-            success: false,
-            message:
-              "Format file tidak valid. Hanya file JPG, JPEG, dan PNG yang diperbolehkan.",
-          });
+      try {
+        if (err) {
+          if (err.message === "fileformat_error") {
+            throw Error("fileformat_error");
+          }
+          throw Error(err.message);
         }
+        return next();
+      } catch (err) {
         return res.status(500).json({
           success: false,
-          message: "File size to large",
+          message: "Internal Server Error & File size to large",
         });
       }
-
-      return next();
     });
   };
 };

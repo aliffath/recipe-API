@@ -1,18 +1,11 @@
 const recipeModel = require("../model/RecipeModel");
-const cloudinary = require("cloudinary").v2;
 const fileRemove = require("../helper/fileRemove");
-const path = require("path");
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
 
 const recipeController = {
   getRecipes: async (req, res) => {
     try {
       const page = Number(req.query.page) || 1;
-      const limit = Number(req.query.limit) || 5;
+      const limit = Number(req.query.limit) || 2;
       const offset = (page - 1) * limit;
       const sortBY = req.query.sortBY || "id";
       const searchBY = req.query.searchBY || "title";
@@ -168,7 +161,9 @@ const recipeController = {
 
       if (dataRecipe.rows[0].image) {
         const file = dataRecipe.rows[0].image.slice(62);
+        console.log(file);
         const deletedFile = file.slice(0, -4);
+        console.log(deletedFile);
         fileRemove(deletedFile);
       }
 
@@ -186,10 +181,15 @@ const recipeController = {
   updateRecipe: async (req, res) => {
     const { id } = req.params;
     const { title, ingredients, category_id } = req.body;
-    const image = req.file.path;
-    console.log(req.file);
+    let image;
 
     try {
+      image = req.file ? req.file.path : null;
+      console.log(req.file);
+
+      if (!image) {
+        return res.status(404).json({ message: "Image Path Undefined" });
+      }
       const dataRecipe = await recipeModel.findById(id);
       if (dataRecipe.rows.length === 0) {
         return res.status(404).json({ message: "ID not found" });
@@ -201,7 +201,9 @@ const recipeController = {
 
       if (dataRecipe.rows[0].image) {
         const file = dataRecipe.rows[0].image.slice(62);
+        console.log(file);
         const deletedFile = file.slice(0, -4);
+        console.log(deletedFile);
         fileRemove(deletedFile);
       }
 

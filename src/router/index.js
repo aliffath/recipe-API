@@ -31,7 +31,7 @@ router.post("/login", login);
 
 router.put("/update/:id", uploadMiddleware("photo"), verifyToken, updateUser);
 router.delete("/delete/:id", deleteUser);
-router.get("/detail/:id", getDetail);
+router.get("/detail/:id", verifyToken, getDetail);
 router.get("/allData", getAll);
 router.post("/postUsers", postUser);
 
@@ -42,8 +42,8 @@ router.get("/category", getData);
 //CRUD RECIPES
 router.put(
   "/updateRecipe/:id",
-  uploadMiddleware("image"),
   verifyToken,
+  uploadMiddleware("image"),
   updateRecipe
 );
 router.get("/recipe/:id", verifyToken, getById);
