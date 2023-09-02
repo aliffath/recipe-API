@@ -47,6 +47,7 @@ const authController = {
 
     try {
       const user = await userModel.findByEmail(email);
+      const dataUser = user.rows[0];
       if (!user.rows[0]) {
         return res.status(404).json({
           status: 404,
@@ -76,7 +77,7 @@ const authController = {
       );
       return res
         .status(200)
-        .json({ status: 200, message: "Login Successfully", token });
+        .json({ status: 200, message: "Login Successfully", token, dataUser });
     } catch (error) {
       console.log(error);
       return res
