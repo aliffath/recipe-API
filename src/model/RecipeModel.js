@@ -112,7 +112,7 @@ const recipeModel = {
     const { search, searchBy, offset, limit, id, sort } = data;
     return new Promise((resolve, reject) =>
       Pool.query(
-        `SELECT recipe.id, recipe.title, recipe.ingredients, recipe.image, category.name AS category FROM recipe JOIN category ON recipe.category_id = category.id WHERE users_id = ${id} AND ${searchBy} ILIKE '%${search}%' ORDER BY create_at ${sort} OFFSET ${offset} LIMIT ${limit}`,
+        `SELECT recipe.id, recipe.title, recipe.ingredients, recipe.image, category.name AS category FROM recipe JOIN category ON recipe.category_id = category.id WHERE users_id = ${id} AND ${searchBy} ILIKE '%${search}%' ORDER BY title ${sort} OFFSET ${offset} LIMIT ${limit}`,
         (err, result) => {
           if (!err) {
             resolve(result);
