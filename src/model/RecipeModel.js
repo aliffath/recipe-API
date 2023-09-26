@@ -24,7 +24,7 @@ const recipeModel = {
     sort,
     searchBY
   ) => {
-    let query = `SELECT recipe.id, recipe.title, recipe.ingredients, recipe.image, category.name AS category, users.name AS author FROM recipe JOIN category ON recipe.category_id = category.id JOIN users ON users_id = users.id WHERE ${searchBY} ILIKE '%${searchParam}%' ORDER BY ${sortBY} ${sort} LIMIT ${limit} OFFSET ${offset}`;
+    let query = `SELECT recipe.id, recipe.title,recipe.create_at, recipe.ingredients, recipe.image, category.name AS category, users.name AS author FROM recipe JOIN category ON recipe.category_id = category.id JOIN users ON users_id = users.id WHERE ${searchBY} ILIKE '%${searchParam}%' ORDER BY ${sortBY} ${sort} LIMIT ${limit} OFFSET ${offset}`;
     return new Promise((resolve, reject) => {
       Pool.query(query, (err, result) => {
         if (err) {
