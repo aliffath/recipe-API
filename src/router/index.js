@@ -6,6 +6,7 @@ const recipeController = require("../controller/RecipeController");
 const authController = require("../controller/AuthController");
 const { verifyToken } = require("../middleware/verifyToken");
 const uploadMiddleware = require("../middleware/upload");
+const CommentController = require("../controller/ComentController");
 const { getAll, postUser, updateUser, deleteUser, getDetail } = usersController;
 const { getData } = categoryController;
 const {
@@ -19,7 +20,7 @@ const {
 } = recipeController;
 
 const { login, register } = authController;
-
+const { getDataById, postData } = CommentController;
 const router = express.Router();
 
 //AUTH
@@ -53,5 +54,10 @@ router.get("/allRecipe", verifyToken, selectRecipes);
 router.delete("/deleteRecipe/:id", verifyToken, deleteRecipe);
 
 router.get("/myRecipe", verifyToken, getMyRecipe);
+
+//CRUD COMENTS
+
+router.get("/coment/:id", getDataById);
+router.post("/postComent", postData);
 
 module.exports = router;

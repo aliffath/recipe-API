@@ -1,4 +1,4 @@
--- Active: 1689922222754@@147.139.210.135@5432@alif01
+-- Active: 1697185614964@@147.139.210.135@5432@alif01
 
 
 CREATE TABLE users(
@@ -44,3 +44,21 @@ ALTER TABLE recipe DROP COLUMN public_id ;
 
 TRUNCATE TABLE recipe RESTART IDENTITY;
 
+CREATE TABLE comment (
+    comment_id serial PRIMARY KEY,
+    recipe_id integer NOT NULL,
+    user_id integer NOT NULL,
+    comment_text text NOT NULL,
+    created_at timestamp DEFAULT current_timestamp,
+    FOREIGN KEY (recipe_id) REFERENCES recipe(id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+ALTER TABLE comment
+DROP CONSTRAINT IF EXISTS comment_recipe_id_fkey;
+
+ALTER TABLE comment
+ADD CONSTRAINT comment_recipe_id_fkey
+FOREIGN KEY (recipe_id)
+REFERENCES recipe (id)
+ON DELETE CASCADE;
