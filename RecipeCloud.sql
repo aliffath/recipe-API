@@ -62,3 +62,7 @@ ADD CONSTRAINT comment_recipe_id_fkey
 FOREIGN KEY (recipe_id)
 REFERENCES recipe (id)
 ON DELETE CASCADE;
+
+ALTER TABLE comment DROP COLUMN created_at;
+
+ALTER TABLE comment ADD COLUMN create_at timestamp DEFAULT current_timestamp
