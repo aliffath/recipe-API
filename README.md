@@ -1,7 +1,7 @@
 # Food Recipe
 
 <div align="center">
-<a href="https://github.com/mahardhikap/RecipeMobileApp">
+<a href="https://github.com/aliffath/recipe-API">
     <img src="https://i.ibb.co/ZcsX3g3/fix.png" alt="Logo" width="150" height="150">
 </a>
 
@@ -102,10 +102,15 @@ Open Postman, go to workspace then import postman collection on folder recipeApi
 ## Related Project
 
 You can visit my github where I'm using this API for the server:
+
 :rocket: [`Recipe Web App`](https://github.com/aliffath/Food-Recipe-Web-App)
+
 :rocket: [`Recipe Mobile App`](https://github.com/aliffath/Recipe-MobileApp)
 
 ## Contact
 
-- Email : alifmiftakhulfatah@gmail.com
-- Linkedin : www.linkedin.com/in/alif-miftakhul-fatah
+- Email : [`alifmiftakhulfatah@gmail.com`](mailto:alifmiftakhulfatah@gmail.com)
+
+- LinkedIn : [`/in/alif-miftakhul-fatah/`](https://www.linkedin.com/in/alif-miftakhul-fatah/)
+
+- GitHub : [`aliffath`](https://github.com/aliffath)
